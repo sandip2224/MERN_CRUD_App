@@ -15,6 +15,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/api/students', require('./routes/student.route'))
 
+// Production setup
+const _dirname = path.dirname('')
+const buildPath = path.join(_dirname, '../client/build');
+
+app.use(express.static(buildPath))
+
+app.get('/*', function (req, res) {
+  res.sendFile(
+    path.join(__dirname, '../client/build/index.html'),
+    (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+})
+
 // PORT
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, console.log('🚀 Server up and running on port ' + PORT))
