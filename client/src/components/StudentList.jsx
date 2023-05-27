@@ -7,8 +7,6 @@ import Table from 'react-bootstrap/Table';
 import StudentTableRow from './StudentTableRow';
 
 function StudentList() {
-	const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
 	const [students, setStudents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
@@ -17,7 +15,7 @@ function StudentList() {
 	useEffect(() => {
 		const fetchStudents = async () => {
 			try {
-				const res = await axios.get(`${API_BASE_URL}/students`);
+				const res = await axios.get(`/api/students`);
 				setStudents(res.data.data);
 				setLoading(false);
 				setError(false);

@@ -10,7 +10,6 @@ import { useHistory, useParams } from 'react-router-dom';
 function EditStudent(props) {
 	const { id } = useParams();
 
-	const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [roll, setRoll] = useState('');
@@ -21,15 +20,9 @@ function EditStudent(props) {
 	const history = useHistory();
 
 	useEffect(() => {
-		// const fetchStudentData = async () => {
-		// 	const res = await axios.get(`${API_BASE_URL}/edit-student/` + id);
-		// };
-
 		const fetchStudentData = async () => {
 			try {
-				const res = await axios.get(
-					`${API_BASE_URL}/students/edit-student/` + id
-				);
+				const res = await axios.get(`/api/students/edit-student/` + id);
 				setName(res.data.data.name);
 				setEmail(res.data.data.email);
 				setRoll(res.data.data.roll);
@@ -43,7 +36,7 @@ function EditStudent(props) {
 			}
 		};
 		fetchStudentData();
-	}, []);
+	}, [id]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -56,7 +49,7 @@ function EditStudent(props) {
 
 		try {
 			const res = await axios.put(
-				`${API_BASE_URL}/students/update-student/` + id,
+				`/api/students/update-student/` + id,
 				newStudentObject
 			);
 			console.log(res.data?.msg);

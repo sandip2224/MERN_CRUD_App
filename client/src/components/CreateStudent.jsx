@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function CreateStudent() {
-	const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [roll, setRoll] = useState('');
@@ -22,7 +21,7 @@ function CreateStudent() {
 
 		try {
 			const res = await axios.post(
-				`${API_BASE_URL}/students/create-student`,
+				'/api/students/create-student',
 				newStudentObject
 			);
 			console.log('New student created: ' + res.data);

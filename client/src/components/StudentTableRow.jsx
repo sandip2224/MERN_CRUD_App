@@ -6,15 +6,12 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 function StudentTableRow(props) {
-	const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 	const { name, email, roll, _id } = props.obj;
 	const { setReload } = props;
 
 	const handleDelete = async () => {
 		try {
-			const res = await axios.delete(
-				`${API_BASE_URL}/students/delete-student/` + _id
-			);
+			const res = await axios.delete(`/api/students/delete-student/` + _id);
 
 			console.log(res.data?.msg);
 			setReload((prevState) => !prevState);
