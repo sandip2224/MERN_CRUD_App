@@ -5,12 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev:client": "cd ../client && npm run start",
-		"start:client": "cd ../client && npm run start",
-		"dev:server": "nodemon app",
-		"start:server": "node app",
-		"start": "concurrently \"npm run start:client\" \"npm run start:server\"",
-		"dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+		"dev:server": "nodemon -L app.js",
+		"start:server": "node app"
 	},
 	"author": "Sandipan Das <sandip2224>",
 	"license": "ISC",
